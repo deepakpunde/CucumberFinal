@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="0.505">
+<testcase classname="Twitter scenarios" name="Log in to the Twitter" time="0.008">
+<system-out><![CDATA[Given I am on the Twitter home page.........................................passed
+When I click on Log in link.................................................passed
+Then Log in to twitter page is displayed....................................passed
+]]></system-out>
+</testcase>
+</testsuite>
