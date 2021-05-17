@@ -1,4 +1,4 @@
-Feature: Twitter Log in functionality
+Feature: Twitter Profile functionality
 	
 	@Sanity
   Scenario: User can upload profile picture

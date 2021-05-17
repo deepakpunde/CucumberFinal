@@ -8,16 +8,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import elements.TwitterLoginElements;
+import elements.TwitterNavigationBarElements;
 import elements.TwitterProfileElements;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class TwitterProfileSteps {
-	
+	//Variable declaration
 	WebDriver driver;
 	WebDriverWait webdriverwait;
-	TwitterLoginElements objTwitter_Home_Elements;
+	TwitterLoginElements objTwitter_Login_Elements;
+	TwitterNavigationBarElements objTwitterNavigationBarElements;
 	TwitterProfileElements objTwitterProfileElements;
 	
 	CommonSteps objCommonSteps;
@@ -26,21 +28,22 @@ public class TwitterProfileSteps {
 	String strLocation = "Pune";
 	String strWebSite = "in.yahoo.com";
 	
-	//Picocontainer helps here
+	//Constructor - Picocontainer helps here
 	public TwitterProfileSteps(CommonSteps objCommonSteps) {
 		this.driver = objCommonSteps.getDriver();
-		objTwitter_Home_Elements = new TwitterLoginElements(driver);
+		objTwitter_Login_Elements = new TwitterLoginElements(driver);
 		objTwitterProfileElements = new TwitterProfileElements(driver);
+		objTwitterNavigationBarElements = new TwitterNavigationBarElements(driver);
 		this.objCommonSteps = objCommonSteps;
 	}
 	
 	@Given("User is on the Twitter Home page")
 	public void user_is_on_the_Twitter_Home_page() {
 		driver.get("https://twitter.com/login");
-		driver.findElement(By.xpath("//input[@name='session[username_or_email]']")).sendKeys("deepakpunde1");
-		driver.findElement(By.xpath("//input[@name='session[password]']")).sendKeys("Welcome@1");
-		driver.findElement(By.xpath("//span/span[contains(text(),'Log')]")).click();
-		boolean isHomePageDisplayed = driver.findElement(By.xpath("//div/span[contains(text(),'@deepakpunde1')]")).isDisplayed(); 
+		objTwitter_Login_Elements.textFieldUserName.sendKeys("deepakpunde1");
+		objTwitter_Login_Elements.textFieldPassword.sendKeys("P@ssw0rd");
+		objTwitter_Login_Elements.btnLogin.click();
+		boolean isHomePageDisplayed = objTwitterNavigationBarElements.labelTwitterAccountMenu.isDisplayed();
 		assertEquals(isHomePageDisplayed,true);
 	}
 
